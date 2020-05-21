@@ -6,11 +6,13 @@ using namespace std;
 
 class Output {
 public:
-  void print_vector(vector<string> vec);
+  template <class T>
+  void print_vector(vector<T> vec);
 };
 
-void Output::print_vector(vector<string> vec){
-  for (auto s : vec) cout << s << endl;
+template <class T>
+void Output::print_vector(vector<T> vec){
+  for (auto elem : vec) cout << elem << endl;
 }
 
 #endif
