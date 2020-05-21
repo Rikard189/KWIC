@@ -1,29 +1,39 @@
 
 #include<iostream>
 #include<vector>
+#include "Format.h"
+#include "CircularShift.h"
+#include "AlphabeticalOrder.h"
+#include "Output.h"
 using namespace std;
 
 int main() {
 
-  vector<string> result;
+  Format formatter;
+  CircularShift shifter;
+  AlphabeticalOrder alphabetizer;
+  Output outputter;
 
-  // llamada a separador lineas en lector de archivo -> vector de lineas
+  vector<string> result_sentences;
+
+  // FIXME : aqui raw_sentences debe ser el resultado del input file
   vector<string> raw_sentences = {"Clouds are white.", "Pittsburgh is beautiful."};
 
   for (auto sentence : raw_sentences) {
 
-    // llamada a en formateador -> oracion sin mayuscula ni punto
+    // formateador -> oracion sin mayuscula ni punto
+    string formatted_sentence = formatter.format_string(sentence);
 
-    // llamada a generacion de circular shift -> vector de oraciones shifteadas
-    vector<string> shift_sentences = {"clouds are white", "are white clouds", "white clouds are"};
+    // circular shift
+    vector<string> shift_sentences = shifter.circ_shift(formatted_sentence);
 
-    // agrega oraciones a vector principal
-    for (auto s : shift_sentences) result.push_back(s);
+    // agrega oraciones a resultados
+    for (auto s : shift_sentences) result_sentences.push_back(s);
   }
 
-  // sortear vector principal alfabeticamente -> KWIC
-
-  // llamada a output
+  // sortea resultados alfabeticamente -> KWIC
+  vector<string> sorted_sentences = alphabetizer.sort_sentences(result_sentences);
+  outputter.print_vector(sorted_sentences);
 
   cout << "pasa la pipa" << endl;
 }
