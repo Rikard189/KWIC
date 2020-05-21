@@ -11,9 +11,9 @@ public:
 };
 
 vector<string> AlphabeticalOrder::sort_sentences(vector<string> sentences){
-
-  // FIXME : aqui falta sortear alfabeticamente
-
+  sort(sentences.begin(), sentences.end(), [](string s1, string s2) {
+    return s1 < s2;
+  });
   return sentences;
 }
 
