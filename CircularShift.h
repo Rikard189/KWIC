@@ -1,6 +1,8 @@
 #ifndef CircularShift_h
 #define CircularShift_h
 
+#include <algorithm>
+
 using namespace std;
 
 class CircularShift {
@@ -12,10 +14,16 @@ vector<string> CircularShift::circ_shift(string s){
 
   // FIXME : que jale el circular shift
 
-  vector<string> shift_result;
+  
+  std::vector<std::string> result;
+  std::istringstream iss(s);
+  string sr = "";
+  for(std::string s; iss >> s; ){
+    sr = s + " " + sr;
+  }
 
-  shift_result.push_back(s);
-  return shift_result;
+  result.push_back(sr);
+  return result;
 }
 
 #endif
