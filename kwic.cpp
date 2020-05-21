@@ -1,6 +1,7 @@
 
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
+#include "InputFile.h"
 #include "Format.h"
 #include "CircularShift.h"
 #include "AlphabeticalOrder.h"
@@ -9,6 +10,7 @@ using namespace std;
 
 int main() {
 
+  InputFile inputter;
   Format formatter;
   CircularShift shifter;
   AlphabeticalOrder alphabetizer;
@@ -16,12 +18,12 @@ int main() {
 
   vector<string> result_sentences;
 
-  // FIXME : aqui raw_sentences debe ser el resultado del input file
-  vector<string> raw_sentences = {"Clouds are white.", "Pittsburgh is beautiful."};
+  // lee input file y separa lineas
+  vector<string> raw_sentences = inputter.get_lines("input.txt");
 
   for (auto sentence : raw_sentences) {
 
-    // formateador -> oracion sin mayuscula ni punto
+    // formatea oracion sin mayuscula ni punto
     string formatted_sentence = formatter.format_string(sentence);
 
     // circular shift
@@ -33,6 +35,8 @@ int main() {
 
   // sortea resultados alfabeticamente -> KWIC
   vector<string> sorted_sentences = alphabetizer.sort_sentences(result_sentences);
+
+  // output resultados
   outputter.print_vector(sorted_sentences);
 
   cout << "pasa la pipa" << endl;
