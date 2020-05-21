@@ -19,5 +19,5 @@ int main() {
 
   // llamada a output
 
-  // pasa la pipa
+  cout << "pasa la pipa" << endl;
 }
