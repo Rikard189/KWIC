@@ -12,7 +12,6 @@ public:
 
 vector<string> CircularShift::circ_shift(string s){
 
-<<<<<<< HEAD
   vector<string> shift_result;
   vector<string> words;
 
@@ -38,20 +37,6 @@ vector<string> CircularShift::circ_shift(string s){
      cur = "";
    }
   return shift_result;
-=======
-  // FIXME : que jale el circular shift
-
-  
-  std::vector<std::string> result;
-  std::istringstream iss(s);
-  string sr = "";
-  for(std::string s; iss >> s; ){
-    sr = s + " " + sr;
-  }
-
-  result.push_back(sr);
-  return result;
->>>>>>> e49fcf4519aa02f3d0b5d367186cf84ed0f600bc
 }
 
 #endif
