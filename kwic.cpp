@@ -21,5 +21,4 @@ int main() {
   // output resultados
   outputter.print_vector(sorted_sentences);
 
-  cout << "pasa la pipa" << endl;
 }
