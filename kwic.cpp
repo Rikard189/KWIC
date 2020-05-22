@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <vector>
-#include "Kwic.h"
+#include "Kwic1.h"
 #include "InputFile.h"
 #include "Output.h"
 using namespace std;
