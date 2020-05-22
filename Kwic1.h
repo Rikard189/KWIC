@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include "InputFile.h"
 #include "Format.h"
 #include "CircularShift.h"
@@ -14,7 +15,7 @@ class Kwic {
 public:
   vector<string> kwic(vector<string> sentences);
 private:
-  vector<string> stop_words;
+  set<string> stop_words;
   bool ascending;
   void add_stop_words();
   void asc_or_dec();
@@ -60,7 +61,7 @@ void Kwic::add_stop_words() {
       string stop_word;
       cout << "Dame una stop word." << endl;
       cin >> stop_word;
-      stop_words.push_back(stop_word);
+      stop_words.insert(stop_word);
       cout << "Se le ofrece otra stop word? (y/n)" << endl;
       cin >> user_ans;
       if (user_ans != "y") quiere_mas = false;
@@ -116,7 +117,7 @@ vector<string> Kwic::kwic(vector<string> sentences){
     string formatted_sentence = formatter.format_string(sentence);
 
     // circular shift
-    vector<string> shift_sentences = shifter.circ_shift(formatted_sentence);
+    vector<string> shift_sentences = shifter.stop_circ_shift(formatted_sentence, stop_words);
 
     // agrega oraciones a resultados
     for (auto s : shift_sentences) result_sentences.push_back(s);
