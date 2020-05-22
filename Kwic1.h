@@ -1,5 +1,5 @@
-#ifndef Kwic_h
-#define Kwic_h
+#ifndef Kwic1_h
+#define Kwic1_h
 
 #include <iostream>
 #include <vector>
@@ -30,7 +30,7 @@ vector<string> Kwic::kwic(vector<string> sentences){
 
   cout << "Quieres stop words? (y/n)" << endl;
   cin >> user_ans;
-  if (user_ans == 'y') {
+  if (user_ans == "y") {
     bool quiere_mas = true;
     while (quiere_mas) {
       string stop_word;
@@ -39,14 +39,14 @@ vector<string> Kwic::kwic(vector<string> sentences){
       stop_words.push_back(stop_word);
       cout << "Se le ofrece otra stop word? (y/n)" << endl;
       cin >> user_ans;
-      if (user_ans != 'y') quiere_mas = false;
+      if (user_ans != "y") quiere_mas = false;
     }
   }
 
   bool ascending = false;
   cout << "Quieres ascendente o descendente? (a/d)" << endl;
   cin >> user_ans;
-  if (user_ans == 'a') ascending = true;
+  if (user_ans == "a") ascending = true;
 
   for (string sentence : sentences) {
 
