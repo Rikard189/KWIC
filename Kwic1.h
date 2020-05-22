@@ -13,21 +13,24 @@ using namespace std;
 class Kwic {
 public:
   vector<string> kwic(vector<string> sentences);
+private:
+  vector<string> stop_words;
+  bool ascending;
+  void add_stop_words();
+  void asc_or_dec();
 };
 
-vector<string> Kwic::kwic(vector<string> sentences){
-
-  Format formatter;
-  CircularShift shifter;
-  AlphabeticalOrder alphabetizer;
-
-  vector<string> result_sentences;
-
-  // pide stop words por consola
-  vector<string> stop_words;
+void Kwic::asc_or_dec() {
   string user_ans;
+  bool ascending = false;
+  cout << "Quieres ascendente o descendente? (a/d)" << endl;
+  cin >> user_ans;
+  if (user_ans == "a") ascending = true;
+}
 
-
+void Kwic::add_stop_words() {
+  // pide stop words por consola
+  string user_ans;
   cout << "Quieres stop words? (y/n)" << endl;
   cin >> user_ans;
   if (user_ans == "y") {
@@ -42,11 +45,21 @@ vector<string> Kwic::kwic(vector<string> sentences){
       if (user_ans != "y") quiere_mas = false;
     }
   }
+}
 
-  bool ascending = false;
-  cout << "Quieres ascendente o descendente? (a/d)" << endl;
-  cin >> user_ans;
-  if (user_ans == "a") ascending = true;
+vector<string> Kwic::kwic(vector<string> sentences){
+
+  Format formatter;
+  CircularShift shifter;
+  AlphabeticalOrder alphabetizer;
+
+  vector<string> result_sentences;
+
+  // agrega stop words desde consola
+  add_stop_words();
+
+  // pregunta si quiere asc o dec
+  asc_or_dec();
 
   for (string sentence : sentences) {
 
