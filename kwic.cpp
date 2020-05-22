@@ -19,6 +19,6 @@ int main() {
   vector<string> sorted_sentences = kwic.kwic(raw_sentences);
 
   // output resultados
-  outputter.print_vector(sorted_sentences);
+  outputter.output_txt(sorted_sentences);
 
 }
