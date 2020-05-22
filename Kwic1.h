@@ -18,6 +18,7 @@ private:
   set<string> stop_words;
   bool ascending;
   void add_stop_words();
+  void add_stop_words_file();
   void asc_or_dec();
   vector<string> delete_input(vector<string> sentences);
   vector<string> delete_sentences(vector<string> sentences, vector<int> indexes);
@@ -93,6 +94,20 @@ vector<string> Kwic::delete_input(vector<string> sentences) {
   return sentences;
 }
 
+void Kwic::add_stop_words_file() {
+  string user_ans;
+  cout << "Quieres stop words? (y/n)" << endl;
+  cin >> user_ans;
+  if (user_ans == "y") {
+    InputFile inputter;
+    string file_name;
+    cout << "Nombre del archivo de input para stop words?" << endl;
+    cin >> file_name;
+    vector<string> sw_vec = inputter.get_lines(file_name);
+    for (auto w : sw_vec) stop_words.insert(w);
+  }
+}
+
 vector<string> Kwic::kwic(vector<string> sentences){
 
   Format formatter;
@@ -103,7 +118,10 @@ vector<string> Kwic::kwic(vector<string> sentences){
   vector<string> result_sentences;
 
   // agrega stop words desde consola
-  add_stop_words();
+  // add_stop_words();
+
+  // agrega stop words desde archivo
+  add_stop_words_file();
 
   // pregunta si quiere asc o dec
   asc_or_dec();
