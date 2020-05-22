@@ -14,13 +14,13 @@ using namespace std;
 class Kwic {
 public:
   vector<string> kwic(vector<string> sentences);
+  vector<string> del(vector<string> sentences, string type);
 private:
   set<string> stop_words;
   bool ascending;
   void add_stop_words();
   void add_stop_words_file();
   void asc_or_dec();
-  vector<string> delete_input(vector<string> sentences);
   vector<string> delete_sentences(vector<string> sentences, vector<int> indexes);
   void print_sentences(vector<string> vec);
 };
@@ -70,12 +70,12 @@ void Kwic::add_stop_words() {
   }
 }
 
-vector<string> Kwic::delete_input(vector<string> sentences) {
+vector<string> Kwic::del(vector<string> sentences, string type) {
   string user_ans;
-  cout << "Lineas de input: " << endl;
+  cout << "Lineas de " << type << ": " << endl;
   print_sentences(sentences);
   vector<int> indexes;
-  cout << "Quieres eliminar lineas de entrada? (y/n)" << endl;
+  cout << "Quieres eliminar lineas de " << type << "? (y/n)" << endl;
   cin >> user_ans;
   if (user_ans == "y") {
     bool quiere_borrar = true;
@@ -93,6 +93,7 @@ vector<string> Kwic::delete_input(vector<string> sentences) {
   }
   return sentences;
 }
+
 
 void Kwic::add_stop_words_file() {
   string user_ans;
@@ -127,7 +128,7 @@ vector<string> Kwic::kwic(vector<string> sentences){
   asc_or_dec();
 
   //lineas de entrada
-  vector<string> input_sentences = delete_input(sentences);
+  vector<string> input_sentences = del(sentences, "entrada");
 
   for (string sentence : input_sentences) {
 

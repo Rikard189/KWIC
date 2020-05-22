@@ -18,9 +18,11 @@ int main() {
 
   // corre el algoritmo kwic
   vector<string> sorted_sentences = kwic.kwic(raw_sentences);
+  outputter.output_txt(sorted_sentences, "output1.txt");
+
+  vector<string> final_sentences = kwic.del(sorted_sentences, "salida");
 
   // output resultados
-  outputter.print_vector(sorted_sentences);
-  outputter.output_txt(sorted_sentences);
-
+  outputter.print_vector(final_sentences);
+  outputter.output_txt(final_sentences, "output2.txt");
 }
